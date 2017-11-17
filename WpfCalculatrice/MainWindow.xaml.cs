@@ -21,6 +21,10 @@ namespace WpfCalculatrice
     public partial class MainWindow : Window
     {
         private Addition addition;
+        private Soustraction soustraction;
+        private Multiplication mult;
+        private Division division;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,17 +53,62 @@ namespace WpfCalculatrice
 
         private void btnSub_Click(object sender, RoutedEventArgs e)
         {
+            double dblNumber1;
+            double dblNumber2;
 
+            if (double.TryParse(tbxNumber1.Text, out dblNumber1))
+            {
+                if (double.TryParse(tbxNumber2.Text, out dblNumber2))
+                {
+                    soustraction.setVal1(dblNumber1);
+                    soustraction.setVal2(dblNumber2);
+                    lblResponse.Content = soustraction.Soustraire();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez contrôler le format des nombres saisis !", "Convesion", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnDiv_Click(object sender, RoutedEventArgs e)
         {
+            double dblNumber1;
+            double dblNumber2;
 
+            if (double.TryParse(tbxNumber1.Text, out dblNumber1))
+            {
+                if (double.TryParse(tbxNumber2.Text, out dblNumber2))
+                {
+                    division.setVal1(dblNumber1);
+                    division.setVal2(dblNumber2);
+                    lblResponse.Content = division.Diviser();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez contrôler le format des nombres saisis !", "Convesion", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnMult_Click(object sender, RoutedEventArgs e)
         {
+            double dblNumber1;
+            double dblNumber2;
 
+            if (double.TryParse(tbxNumber1.Text, out dblNumber1))
+            {
+                if (double.TryParse(tbxNumber2.Text, out dblNumber2))
+                {
+                    mult.setVal1(dblNumber1);
+                    mult.setVal2(dblNumber2);
+                    lblResponse.Content = mult.multiplier();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez contrôler le format des nombres saisis !", "Convesion", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
